@@ -2,30 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+// Base_Mng 는 모든 매니저 스크립트를 관리하기 위해 싱글톤 방식으로 생성
+// 전역에서 Base_Mng 접근 후 다른 매니저에 쉽게 접근할 수 있음 Base_Mng.pool 이런식으로
+ */
 public class Base_Mng : MonoBehaviour
 {
-    public static Base_Mng instance = null;
+    
+    public static Base_Mng instance = null; 
+
     private static Pool_Mng s_Pool = new Pool_Mng();
     public static Pool_Mng Pool { get { return s_Pool; } } 
-    // Start is called before the first frame update
+
     private void Awake()
     {
-        initalize();
+        singletonInit();
     }
 
-    private void initalize()
+    private void singletonInit()
     {
         if(instance == null)
         {
-            instance = this;
-            Pool.initalize(transform);
+            instance = this;            
             DontDestroyOnLoad(this.gameObject);
         } else
         {
             Destroy(this.gameObject);
         }
     }
-    public GameObject instantiate_path(string path)
+
+    public GameObject instantiate_path(string path) // instantiate_path 에서 게임오브젝트를 반환하는 이유는 풀 매니저가 모노 상속을 안 받고 있기 때문에 instantiate를 할 수 없어서 여기서 생성하고 반환하는 것이다.
     {
         return Instantiate(Resources.Load<GameObject>(path));
     }
