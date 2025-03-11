@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject monster_prefab;
-
     public int m_Count;
     public float m_SpawnTime;
+
+    // 스포너에 쉽게 접근하기 위해 static
+    public static List<Monster> m_Monster = new List<Monster>();
+    public static List<Player> m_Players = new List<Player>();
 
     private void Start()
     {
@@ -33,18 +35,13 @@ public class Spawner : MonoBehaviour
                 value.GetComponent<Monster>().init();
                 value.transform.position = pos;
                 value.transform.LookAt(Vector3.zero);
+
+                m_Monster.Add(value.GetComponent<Monster>());
             });
 
-            StartCoroutine(ReturnCoroutine(goObj));
         }
         yield return new WaitForSeconds(m_SpawnTime);
 
         StartCoroutine(SpawnCoroutine());
-    }
-
-    IEnumerator ReturnCoroutine(GameObject obj)
-    {
-        yield return new WaitForSeconds(1.0f);
-        Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(obj);
     }
 }

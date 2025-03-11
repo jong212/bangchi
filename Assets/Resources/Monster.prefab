@@ -627,6 +627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177f031c122e7244c810014425b43621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  ATK: 0
+  ATK_Speed: 0.09
+  m_BulletTransform: {fileID: 0}
   m_Speed: 1
   stopDistance: 0.5
 --- !u!1 &4789453424157059388

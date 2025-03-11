@@ -4,19 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Monster : MonoBehaviour
+public class Monster : Character
 {
     public float m_Speed;
-    Animator animator;
 
     public float stopDistance = .5f;
     bool isSpawn = false;
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-      //  StartCoroutine(Spawn_Start());
-    }
 
     public void init()
     {
@@ -68,11 +62,5 @@ public class Monster : MonoBehaviour
         }
 
     }
-    private void AnimationChange(string animName)
-    {
-        animator.SetBool("isIdle", false);
-        animator.SetBool("isMove", false);
-
-        animator.SetBool(animName, true);
-    }
+    
 }
