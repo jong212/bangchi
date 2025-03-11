@@ -11,8 +11,8 @@ public class Character : MonoBehaviour
     public double ATK;
     public float ATK_Speed;
 
-    protected float Attack_Range = 1.0f; // 공격 범위
-    protected float Target_Range = 3.0f; // 추격 범위
+    protected float Attack_Range = 3.0f; // 공격 범위
+    protected float Target_Range = 6.0f; // 추격 범위
     protected bool isAttack;
     protected Transform m_Target; // 추격 범위
 
@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
        Base_Mng.Pool.Pooling_Obj("Bullet").Get((value) =>
         {
             value.transform.position = m_BulletTransform.position;
+            value.GetComponent<Bullet>().Init(m_Target,10,"CH_01");
         });
     }
     protected void FindClosetTarget(List<Monster> targets)
