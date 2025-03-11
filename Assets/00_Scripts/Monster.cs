@@ -18,6 +18,10 @@ public class Monster : MonoBehaviour
       //  StartCoroutine(Spawn_Start());
     }
 
+    public void init()
+    {
+        StartCoroutine(Spawn_Start());
+    }
     /// <summary>
     /// 1. 몬스터가 스폰될 때 갑자기 나타나는 대신, 작게 시작해 점진적으로 커지도록 부드러운 효과를 주기 위함.
     /// 2. 선형 보간(Lerp): Scale 값을 0에서 1까지 1초 동안 균등하게 증가시키기 위해 사용.
