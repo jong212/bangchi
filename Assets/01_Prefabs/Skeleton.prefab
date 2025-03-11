@@ -569,6 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3929173439878207338}
   - component: {fileID: 6235356615395440278}
+  - component: {fileID: 290316463932157304}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -614,6 +615,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &290316463932157304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666793844657588222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177f031c122e7244c810014425b43621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Speed: 1
+  stopDistance: 0.5
 --- !u!1 &4789453424157059388
 GameObject:
   m_ObjectHideFlags: 0
