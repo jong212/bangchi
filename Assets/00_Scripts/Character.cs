@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     protected bool isAttack;
     protected Transform m_Target; // 추격 범위
 
+    // 플레이어 블릿 생성 위치 (지팡이 헤드 쪽)
     [SerializeField] Transform m_BulletTransform;
 
 
@@ -24,7 +25,9 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();        
     }
+    // Invoke 
     protected void InitAttack() => isAttack = false;
+
     protected void AnimationChange(string animName)
     {
         if (animName == "isAttack")
@@ -38,6 +41,7 @@ public class Character : MonoBehaviour
 
         animator.SetBool(animName, true);
     }
+
     protected virtual void Bullet()
     {
        Base_Mng.Pool.Pooling_Obj("Bullet").Get((value) =>
