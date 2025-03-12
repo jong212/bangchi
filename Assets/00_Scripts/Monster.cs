@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,8 +13,15 @@ public class Monster : Character
     bool isSpawn = false;
 
 
+    protected override void Start()
+    {
+        base.Start();
+        HP = 5;
+    }
     public void init()
     {
+        isDead = false;
+        HP = 5;
         StartCoroutine(Spawn_Start());
     }
     /// <summary>
@@ -44,6 +52,22 @@ public class Monster : Character
         isSpawn = true;
 
     }
+    public void GetDamage(double dmg)
+    {
+        if (isDead) return;
+        HP -= dmg;
+        if(HP <= 0)
+        {
+            isDead = true;
+            Spawner.m_Monster.Remove(this);
+            var smokeObj = Base_Mng.Pool.Pooling_Obj("Smoke").Get((value) =>
+            {
+                value.transform.position = new Vector3(transform.position.x,.5f,transform.position.z);
+                Base_Mng.instance.Return_Pool(value.GetComponent<ParticleSystem>().duration, value, "Smoke");
+            });
+            Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
+        }
+    }
     private void Update()
     {
         transform.LookAt(Vector3.zero);
@@ -62,5 +86,4 @@ public class Monster : Character
         }
 
     }
-    
 }
