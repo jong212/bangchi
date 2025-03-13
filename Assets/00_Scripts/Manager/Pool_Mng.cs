@@ -57,13 +57,13 @@ public class Pool_Mng
     // 새로운 오브젝트 풀을 생성하는 메서드 (풀장이 없을 때 풀장을 만든다)
     private GameObject Add_Pool(string path)
     {
-        GameObject obj = new GameObject(path + "##Pool");     // 오브젝트 풀을 위한 빈 게임오브젝트 생성
-        obj.transform.SetParent(Base_Mng.instance.transform); // 풀 매니저를 부모로 설정
+        GameObject obj = new GameObject(path + "##Pool");     // 빈 오브젝트 생성
+        obj.transform.SetParent(Base_Mng.instance.transform); // obj의 부모를 Base_Mng로 설정 => 베이스 매니저가 있고 그 밑으로 풀장 오브젝트들(monster##pool,bullet##pool,effect##pool 등) 모아둘라고
 
-        Object_Pool T_Component = new Object_Pool();          // 새로운 오브젝트 풀 생성
-        m_pool_Dictionary.Add(path, T_Component);             // 딕셔너리에 추가
+        Object_Pool T_Component = new Object_Pool();          // 찐 풀장 생성
+        m_pool_Dictionary.Add(path, T_Component);             // 풀장 생성 했으니 딕셔너리에 무슨 풀장인지 기록
 
-        T_Component.parentTransform = obj.transform;          // 오브젝트 풀의 부모 설정
+        T_Component.parentTransform = obj.transform;          // 빈 오브젝트(obj)의 transform을 생성한 풀(T_Component)의 parentTransform 변수에 저장 나중에 Add_Queue()에서 오브젝트를 생성할 때, 부모를 이 parentTransform으로 설정하기 위해
         return obj;
     }
 

@@ -68,6 +68,11 @@ public class Monster : Character
                 value.transform.position = new Vector3(transform.position.x,.5f,transform.position.z);
                 Base_Mng.instance.Return_Pool(value.GetComponent<ParticleSystem>().duration, value, "Smoke");
             });
+
+            Base_Mng.Pool.Pooling_Obj("CoinParent").Get((value) =>
+            {
+                value.GetComponent<CoinParent>().Init(transform.position);
+            });
             Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
         }
     }

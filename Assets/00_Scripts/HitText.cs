@@ -24,7 +24,7 @@ public class HitText : MonoBehaviour
 
         _target = pos;
         Text.text = dmg.ToString();
-        transform.parent = Base_Canvas.instance.transform;
+        transform.parent = Base_Canvas.instance.HolderLayer(1);
 
         _critical.SetActive(Critical);
         Base_Mng.instance.Return_Pool(2.0f, this.gameObject, "Hit_Text");
