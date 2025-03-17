@@ -74,7 +74,7 @@ public class Monster : Character
                 value.GetComponent<CoinParent>().Init(transform.position);
             });
 
-            for (int i = 0; i < 1; i ++)
+            for (int i = 0; i < 3; i ++)
             {
                 Base_Mng.Pool.Pooling_Obj("Item_Obj").Get((value) =>
                 {

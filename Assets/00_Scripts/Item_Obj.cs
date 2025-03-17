@@ -1,14 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Item_Obj : MonoBehaviour
 {
+    [SerializeField] Transform itemTextRect;
+    [SerializeField] TextMeshProUGUI itemText;
+
+
     [SerializeField] float firingAngle = 45.0f;
     [SerializeField] float gravity = 9.8f;
 
+    bool isCheck = false; 
+
+    void RarityCheck()
+    {
+        isCheck = true;
+
+        transform.rotation = Quaternion.identity;
+
+        itemTextRect.gameObject.SetActive(true);
+        itemTextRect.parent = Base_Canvas.instance.HolderLayer(2);
+
+        itemText.text = "Test ITem";
+    }
+
+    private void Update()
+    {
+        if (isCheck == false) return;
+
+        itemTextRect.position = Camera.main.WorldToScreenPoint(transform.position);
+    }
     public void Init(Vector3 pos)
     {
+        isCheck = false;
         transform.position = pos;
         Vector3 TargetPos = new Vector3(pos.x + (Random.insideUnitSphere.x * 2.0f), 0.5f, pos.z + (Random.insideUnitSphere.z * 2.0f));
         StartCoroutine(SimulateProjectile(TargetPos));
@@ -35,11 +61,11 @@ public class Item_Obj : MonoBehaviour
         float time = 0.0f;
         while (time < flightDuration)
         {
-            Debug.Log("중력 * 시간:" +gravity * time);
             // 포물선 운동 적용
             transform.Translate(0, (vY - (gravity * time)) * Time.deltaTime, vX * Time.deltaTime);
             time += Time.deltaTime;
             yield return null;
         }
+        RarityCheck();
     }
 }
