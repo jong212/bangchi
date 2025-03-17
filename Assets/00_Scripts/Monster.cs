@@ -73,6 +73,14 @@ public class Monster : Character
             {
                 value.GetComponent<CoinParent>().Init(transform.position);
             });
+
+            for (int i = 0; i < 1; i ++)
+            {
+                Base_Mng.Pool.Pooling_Obj("Item_Obj").Get((value) =>
+                {
+                    value.GetComponent<Item_Obj>().Init(transform.position);
+                });
+            }
             Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
         }
     }
