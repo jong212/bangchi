@@ -30,6 +30,10 @@ public class Bullet : MonoBehaviour
     }
     public void Init(Transform target, double dmg, string characterName)
     {
+        
+        if(target == null ) {
+            Debug.Log(target);
+        }
         _target = target;
         transform.LookAt(_target);
         _getHit = false;

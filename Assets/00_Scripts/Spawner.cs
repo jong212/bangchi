@@ -37,7 +37,6 @@ public class Spawner : MonoBehaviour
                 value.transform.LookAt(Vector3.zero);
 
                 m_Monster.Add(value.GetComponent<Monster>());
-                Debug.Log(m_Monster);
             });
 
         }

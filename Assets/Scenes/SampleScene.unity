@@ -4452,6 +4452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864699590}
+  - component: {fileID: 864699593}
   - component: {fileID: 864699592}
   - component: {fileID: 864699591}
   m_Layer: 5
@@ -4523,6 +4524,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864699589}
   m_CullTransparentMesh: 1
+--- !u!114 &864699593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864699589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f43bc46d6ae7764eb4a0b6b00d4a43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expSlider: {fileID: 0}
+  expText: {fileID: 0}
+  atkText: {fileID: 0}
+  goldText: {fileID: 0}
+  hpText: {fileID: 0}
+  getExpText: {fileID: 0}
 --- !u!1 &871325417
 GameObject:
   m_ObjectHideFlags: 0

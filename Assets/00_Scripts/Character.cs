@@ -46,6 +46,7 @@ public class Character : MonoBehaviour
     {
        Base_Mng.Pool.Pooling_Obj("Bullet").Get((value) =>
         {
+            if (m_Target == null) { return; } // 이거 오류나서 임시 방편 용으로 null인경우 return 시킴 총알은 있는데 몬스터가 죽은 경우임 추후 처리 예정 Memo
             value.transform.position = m_BulletTransform.position;
             value.GetComponent<Bullet>().Init(m_Target,10,"CH_01");
         });

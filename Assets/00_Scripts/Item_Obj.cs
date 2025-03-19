@@ -53,14 +53,7 @@ public class Item_Obj : MonoBehaviour
 
     private void Update()
     {
-        if (lootParticle == null)
-        {
-            Debug.Log("null");
-        }
-        else
-        {
-            Debug.Log("Not null");
-        }
+    
         if (isCheck == false) return;
 
         itemTextRect.position = Camera.main.WorldToScreenPoint(transform.position);
