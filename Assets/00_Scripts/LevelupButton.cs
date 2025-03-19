@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,7 @@ public class LevelupButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     [SerializeField] Image expSlider;
     [SerializeField] TextMeshProUGUI expText,atkText,goldText,hpText,getExpText;
+    [SerializeField] DOTweenAnimation dotween;
     bool isPush = false;
     float timer = 0.0f;
     Coroutine _coroutine;
@@ -21,17 +23,22 @@ public class LevelupButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             if (timer >= 0.01f)
             {
                 timer = 0.0f;
+                dotween.DORestart();
                 Debug.Log("연속터치");
             }
         }
-    }
-    public void ExpUp()
-    {
+    } 
 
-    }
+   /* void ExpUp()
+    {
+        transform.DORewind();
+        transform.DOPunchScale(new Vector3(.2f, .2f), 0.25f);
+    }*/
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("터치");
+        /*ExpUp();*/
+
+        dotween.DORestart();
         _coroutine = StartCoroutine(PushCoroutine());
     }
 
