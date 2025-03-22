@@ -15,6 +15,11 @@ public class LevelupButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     bool isPush = false;
     float timer = 0.0f;
     Coroutine _coroutine;
+
+    private void Start()
+    {
+        InitExp();
+    }
     private void Update()
     {
         if (isPush)
@@ -23,22 +28,33 @@ public class LevelupButton : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             if (timer >= 0.01f)
             {
                 timer = 0.0f;
-                dotween.DORestart();
+                ExpUp();
                 Debug.Log("연속터치");
             }
         }
     } 
 
-   /* void ExpUp()
+   void ExpUp()
     {
-        transform.DORewind();
-        transform.DOPunchScale(new Vector3(.2f, .2f), 0.25f);
-    }*/
+        Base_Mng.Player.ExpUp();
+        InitExp();
+        dotween.DORestart();
+
+        /*        transform.DORewind();
+                transform.DOPunchScale(new Vector3(.2f, .2f), 0.25f);*/
+    }
+    void InitExp()
+    {
+        expSlider.fillAmount = Base_Mng.Player.Exp_Percentage();
+        expText.text = string.Format("{0:0.00}", Base_Mng.Player.Exp_Percentage() * 100.0f) + '%';
+        atkText.text = "+" + StringMethod.ToCurrencyString(Base_Mng.Player.Next_Atk());
+        hpText.text = "+" + StringMethod.ToCurrencyString(Base_Mng.Player.Next_Hp());
+        getExpText.text = "<color=#00FF00>EXP</color> +" + string.Format("{0:0.00}", Base_Mng.Player.Next_Exp()) + "%";
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
-        /*ExpUp();*/
+        ExpUp();
 
-        dotween.DORestart();
         _coroutine = StartCoroutine(PushCoroutine());
     }
 

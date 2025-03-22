@@ -12,7 +12,10 @@ public class Base_Mng : MonoBehaviour
     public static Base_Mng instance = null; 
 
     private static Pool_Mng s_Pool = new Pool_Mng();
+    private static Player_Mng s_Player = new Player_Mng();
+
     public static Pool_Mng Pool { get { return s_Pool; } } 
+    public static Player_Mng Player { get { return s_Player; } }    
 
     private void Awake()
     {
