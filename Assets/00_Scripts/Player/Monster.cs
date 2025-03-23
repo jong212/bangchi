@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Monster : Character
 {
@@ -19,7 +15,8 @@ public class Monster : Character
     }
     public void init()
     {
-        isDead = false; 
+        isDead = false;
+        ATK = 10;
         HP = 5;
         _attackRange = .5f;
         StartCoroutine(Spawn_Start());
@@ -27,42 +24,27 @@ public class Monster : Character
     private void Update()
     {
         if (isSpawn == false) return;
-        
-        FindClosetTarget(Spawner.m_Players.ToArray());
+        if(m_Target == null) FindClosetTarget(Spawner.m_Players.ToArray());
 
 
-
-        if ( m_Target.GetComponent<Character>().isDead) FindClosetTarget(Spawner.m_Players.ToArray());
-        float targetDistance = Vector3.Distance(transform.position, m_Target.position);
-
-        if (targetDistance > _attackRange && isAttack == false)
+        if(m_Target != null)
         {
-            AnimationChange("isMove");
-            transform.LookAt(m_Target);
-            transform.position = Vector3.MoveTowards(transform.position, m_Target.position, Time.deltaTime);
-        }
-        else if (targetDistance <= _attackRange && isAttack == false)
-        {
-            isAttack = true;
-            transform.LookAt(m_Target);
-            AnimationChange("isAttack");
-            Invoke("InitAttack", 1.0f);
-        }
+            float targetDistance = Vector3.Distance(transform.position, m_Target.position);
 
-
-
-
-        /*transform.LookAt(Vector3.zero);*//*
-        float targetDistance = Vector3.Distance(transform.position, Vector3.zero);
-        if (targetDistance <= stopDistance)
-        {
-            AnimationChange("isIdle");
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, Time.deltaTime * m_Speed);
-            AnimationChange("isMove");
-        }*/
+            if (targetDistance > _attackRange && isAttack == false)
+            {
+                AnimationChange("isMove");
+                transform.LookAt(m_Target);
+                transform.position = Vector3.MoveTowards(transform.position, m_Target.position, Time.deltaTime);
+            }
+            else if (targetDistance <= _attackRange && isAttack == false)
+            {
+                isAttack = true;
+                transform.LookAt(m_Target);
+                AnimationChange("isAttack");
+                Invoke("InitAttack", 1.0f);
+            }
+        } 
 
     }
     /// <summary>
@@ -96,8 +78,11 @@ public class Monster : Character
     public override void GetDamage(double dmg)
     {
         if (isDead) return;
+
+        bool critical = Critical(ref dmg);
+
         Base_Mng.Pool.Pooling_Obj("Hit_Text").Get((value) => {
-            value.GetComponent<HitText>().init(transform.position, dmg, false);
+            value.GetComponent<HitText>().init(transform.position, dmg, false,critical);
         });
         HP -= dmg;
         if(HP <= 0)
@@ -125,5 +110,17 @@ public class Monster : Character
             Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
         }
     }
- 
+    private  bool Critical(ref double dmg)
+    {
+        float criticalPercentage = Random.Range(0.0f, 100.0f);
+        if (criticalPercentage <= Base_Mng.Player.CriticalPercent)
+        {
+            dmg *= Base_Mng.Player.CriticalDamage / 100;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

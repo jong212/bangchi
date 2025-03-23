@@ -22,9 +22,11 @@ public class MainUI : MonoBehaviour
     }
 
     [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI allatkText;
 
     public void TextCheck()
     {
         levelText.text = "LV." + (Base_Mng.Player.Level + 1).ToString();
+        allatkText.text = StringMethod.ToCurrencyString(Base_Mng.Player.AllCombatPower());
     }
 }

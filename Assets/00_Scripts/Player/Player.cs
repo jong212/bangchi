@@ -6,6 +6,7 @@ public class Player : Character
 {
 
     private Character_Scriptable _characterData;
+    public GameObject TrailObject; 
     public string CharacterName;
 
     Vector3 startPos;
@@ -24,6 +25,14 @@ public class Player : Character
     {
         _characterData = data;
         _attackRange = data.AttackRange;
+        Set_ATKHP();
+    }
+
+    public void Set_ATKHP()
+    {
+        ATK = Base_Mng.Player.Get_Atk(_characterData.Rarity);
+        HP = Base_Mng.Player.Get_Hp(_characterData.Rarity);
+        
     }
     private void Update()
     {
@@ -66,6 +75,9 @@ public class Player : Character
             Invoke("InitAttack", 1.0f);
         }
     }
+
+
+
     public override void GetDamage(double dmg)
     {
         base.GetDamage(dmg);
@@ -76,4 +88,13 @@ public class Player : Character
         });
         HP -= dmg;
     }
+
+    protected override void Attack()
+    {
+        base.Attack();
+        TrailObject.SetActive(true);
+        Invoke("TrailDisable", 1.0f);
+    }
+
+    private void TrailDisable() => TrailObject.SetActive(false);
 }

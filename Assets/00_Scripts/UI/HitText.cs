@@ -31,7 +31,11 @@ public class HitText : MonoBehaviour
 
         transform.parent = Base_Canvas.instance.HolderLayer(1);
 
+        Color color = Color.yellow;
+
         _critical.SetActive(Critical);
+        if (Critical) Text.colorGradient = new VertexGradient(color, color, Color.white, Color.white);
+        else Text.colorGradient = new VertexGradient(Color.white, Color.white, Color.white, Color.white);
         Base_Mng.instance.Return_Pool(2.0f, this.gameObject, "Hit_Text");
     }
 
