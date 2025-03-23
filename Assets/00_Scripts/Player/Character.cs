@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour
 {
+
     Animator animator;
 
     public double HP;
@@ -12,13 +13,14 @@ public class Character : MonoBehaviour
     public float ATK_Speed;
     public bool isDead;
 
-    protected float Attack_Range = 3.0f; // 공격 범위
-    protected float Target_Range = 6.0f; // 추격 범위
+    protected float _attackRange = 3.0f; // 공격 범위
+    protected float _targetRange = 6.0f; // 추격 범위
     protected bool isAttack;
     protected Transform m_Target; // 추격 범위
 
     // 플레이어 블릿 생성 위치 (지팡이 헤드 쪽)
     [SerializeField] Transform m_BulletTransform;
+
 
 
     protected virtual void Start()
@@ -44,18 +46,34 @@ public class Character : MonoBehaviour
 
     protected virtual void Bullet()
     {
-       Base_Mng.Pool.Pooling_Obj("Bullet").Get((value) =>
+       Base_Mng.Pool.Pooling_Obj("AttackHelper").Get((value) =>
         {
             if (m_Target == null) { return; } // 이거 오류나서 임시 방편 용으로 null인경우 return 시킴 총알은 있는데 몬스터가 죽은 경우임 추후 처리 예정 Memo
             value.transform.position = m_BulletTransform.position;
             value.GetComponent<Bullet>().Init(m_Target,10,"CH_01");
         });
     }
-    protected void FindClosetTarget(List<Monster> targets)
+
+    protected virtual void Attack()
+    {
+        if (m_Target == null) return;
+
+        Base_Mng.Pool.Pooling_Obj("AttackHelper").Get((value) =>
+        {
+            value.transform.position = m_Target.position;
+            value.GetComponent<Bullet>().AttackInit(m_Target, 10);
+        });
+    }
+
+    public virtual void GetDamage(double dmg)
+    {
+
+    }
+    protected void FindClosetTarget<T> (T[] targets) where T : Component
     {
         var monsters = targets;
         Transform closetTarget = null;
-        float maxDistance = Target_Range;
+        float maxDistance = _targetRange;
 
         foreach (var monster in monsters)
         {

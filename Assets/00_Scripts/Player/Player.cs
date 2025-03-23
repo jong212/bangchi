@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class Player : Character
 {
+
+    private Character_Scriptable _characterData;
+    public string CharacterName;
+
     Vector3 startPos;
     Quaternion rot;
     protected override void Start()
     {
         base.Start();
+
+        DataSet(Resources.Load<Character_Scriptable>("Scriptable/" + CharacterName));
+        Spawner.m_Players.Add(this);
         startPos = transform.position;
         rot = transform.rotation;
     }
-/*    protected void FindClosetTarget<T>(T[] targets) where T : Component*/
-
+    /*    protected void FindClosetTarget<T>(T[] targets) where T : Component*/
+    private void DataSet(Character_Scriptable data)
+    {
+        _characterData = data;
+        _attackRange = data.AttackRange;
+    }
     private void Update()
     {
         // 타겟할 몬스터가 없으면 0 0 0 으로 'Move'
         // 타겟할 몬스터가 없고  0 0 0 이면 'Idle'
         if(m_Target == null)
         {
-            FindClosetTarget(Spawner.m_Monster);
+            FindClosetTarget(Spawner.m_Monster.ToArray());
 
             float targetPos = Vector3.Distance(transform.position, startPos);
             if(targetPos > 0.1f)
@@ -39,21 +50,30 @@ public class Player : Character
         // 타겟할 몬스터가 Dead 상태면 죽은 몬스터를 향해 갈 순 없으니까 
         // 일단 현재 활성화 되어있는 몬스터가 있는지 체크하고 없다면 return 
         // 리턴 이유는 어차피 타겟할 몬스터가 없어서 위에서 move 해서 0 0 0가면 됨
-        if (m_Target.GetComponent<Character>().isDead) FindClosetTarget(Spawner.m_Monster);
+        if (m_Target.GetComponent<Character>().isDead) FindClosetTarget(Spawner.m_Monster.ToArray());
         if (m_Target == null) return;
             float targetDistance = Vector3.Distance(transform.position, m_Target.position);
-        if(targetDistance <= Target_Range && targetDistance > Attack_Range && isAttack == false)
+        if(targetDistance <= _targetRange && targetDistance > _attackRange && isAttack == false)
         {
             AnimationChange("isMove");
             transform.LookAt(m_Target);
             transform.position = Vector3.MoveTowards(transform.position,m_Target.position,Time.deltaTime);
-        } else if (targetDistance <= Attack_Range && isAttack == false)
+        } else if (targetDistance <= _attackRange && isAttack == false)
         {
             isAttack = true;
             transform.LookAt(m_Target);
             AnimationChange("isAttack");
             Invoke("InitAttack", 1.0f);
         }
+    }
+    public override void GetDamage(double dmg)
+    {
+        base.GetDamage(dmg);
 
+        var goObj = Base_Mng.Pool.Pooling_Obj("Hit_Text").Get((value) =>
+        {
+            value.GetComponent<HitText>().init(transform.position, dmg, true);
+        });
+        HP -= dmg;
     }
 }

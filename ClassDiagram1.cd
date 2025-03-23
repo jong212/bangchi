@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Csv_Importer" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Data\Csv_Importer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSVReader" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAADAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Data\CSVReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StringMethod" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAACAQEAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Data\StringMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Base_Mng" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAQAAAAAJICAAAAAEAAQgAAEA=</HashCode>
+      <FileName>Assets\00_Scripts\Manager\Base_Mng.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player_Mng" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAAAAAAAAAAAACAQAIBAABAAAAAAIA=</HashCode>
+      <FileName>Assets\00_Scripts\Manager\Player_Mng.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Object_Pool" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAAAgAEAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Manager\Pool_Mng.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Pool_Mng" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Manager\Pool_Mng.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Memo" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Memo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Other\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bullet" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAUABAAAQEAAAQAQAAAAgAAAAACAAAAAEI=</HashCode>
+      <FileName>Assets\00_Scripts\Player\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAAAAAIBACggAACAIAAAAAAAQNAAAQAAAAAAAAAwAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Player\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monster">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACggAAACAAAAACAAAAAAAgIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Player\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACgAAAgAAAAAAAACAAAAAIAAAAAAAgAAAAI=</HashCode>
+      <FileName>Assets\00_Scripts\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spawner" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAIAAAAACEAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Player\Spawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character_Scriptable" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAQAAABAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Scriptable\Character_Scriptable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Base_Canvas" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAIAAABAAAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Assets\00_Scripts\UI\Base_Canvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinParent" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAGIQAAAAQAAAAACAABQAEE=</HashCode>
+      <FileName>Assets\00_Scripts\UI\CoinParent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HitText" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAACAAAAAAAAgCAAAIQAAAAAIAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\UI\HitText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item_Obj" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAgEEAAAAAQAABAAAABAAAAAAABAAEACIAAAQAA=</HashCode>
+      <FileName>Assets\00_Scripts\UI\Item_Obj.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelupButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CASAAAAAASGIAAACAEAAAAAAAAAAAAAIAEDAAQAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\UI\LevelupButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MainUI" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAACAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\00_Scripts\UI\MainUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IPool" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAAAgAEAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Manager\Pool_Mng.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CurrencyType" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Data\StringMethod.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rarity" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAABQAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\00_Scripts\Other\Enum_Holder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -17,13 +17,18 @@ public class HitText : MonoBehaviour
         _cam = Camera.main;
     }
 
-    public void init(Vector3 pos, double dmg,  bool Critical)
+    public void init(Vector3 pos, double dmg,bool Monster = false, bool Critical = false)
     {
-        pos.x += Random.Range(-0.3f, 0.3f);
-        pos.z += Random.Range(-0.3f, 0.3f);
+        pos.x += Random.Range(-0.1f, 0.3f);
+        pos.z += Random.Range(-0.1f, 0.3f);
 
         _target = pos;
-        Text.text = dmg.ToString();
+        Text.text = StringMethod.ToCurrencyString(dmg);
+
+        if(Monster) Text.color = Color.red;
+        else Text.color = Color.white;
+
+
         transform.parent = Base_Canvas.instance.HolderLayer(1);
 
         _critical.SetActive(Critical);

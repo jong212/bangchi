@@ -16,13 +16,54 @@ public class Monster : Character
     protected override void Start()
     {
         base.Start();
-        HP = 5;
     }
     public void init()
     {
-        isDead = false;
+        isDead = false; 
         HP = 5;
+        _attackRange = .5f;
         StartCoroutine(Spawn_Start());
+    }
+    private void Update()
+    {
+        if (isSpawn == false) return;
+        
+        FindClosetTarget(Spawner.m_Players.ToArray());
+
+
+
+        if ( m_Target.GetComponent<Character>().isDead) FindClosetTarget(Spawner.m_Players.ToArray());
+        float targetDistance = Vector3.Distance(transform.position, m_Target.position);
+
+        if (targetDistance > _attackRange && isAttack == false)
+        {
+            AnimationChange("isMove");
+            transform.LookAt(m_Target);
+            transform.position = Vector3.MoveTowards(transform.position, m_Target.position, Time.deltaTime);
+        }
+        else if (targetDistance <= _attackRange && isAttack == false)
+        {
+            isAttack = true;
+            transform.LookAt(m_Target);
+            AnimationChange("isAttack");
+            Invoke("InitAttack", 1.0f);
+        }
+
+
+
+
+        /*transform.LookAt(Vector3.zero);*//*
+        float targetDistance = Vector3.Distance(transform.position, Vector3.zero);
+        if (targetDistance <= stopDistance)
+        {
+            AnimationChange("isIdle");
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, Time.deltaTime * m_Speed);
+            AnimationChange("isMove");
+        }*/
+
     }
     /// <summary>
     /// 1. 몬스터가 스폰될 때 갑자기 나타나는 대신, 작게 시작해 점진적으로 커지도록 부드러운 효과를 주기 위함.
@@ -52,7 +93,7 @@ public class Monster : Character
         isSpawn = true;
 
     }
-    public void GetDamage(double dmg)
+    public override void GetDamage(double dmg)
     {
         if (isDead) return;
         Base_Mng.Pool.Pooling_Obj("Hit_Text").Get((value) => {
@@ -84,22 +125,5 @@ public class Monster : Character
             Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
         }
     }
-    private void Update()
-    {
-        transform.LookAt(Vector3.zero);
-
-        if (isSpawn == false) return;
-
-        float targetDistance = Vector3.Distance(transform.position, Vector3.zero);
-
-        if(targetDistance <= stopDistance)
-        {
-            AnimationChange("isIdle");
-        }else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, Time.deltaTime * m_Speed);
-            AnimationChange("isMove");
-        }
-
-    }
+ 
 }

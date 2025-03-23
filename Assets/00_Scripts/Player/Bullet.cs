@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     string _characterName;
     bool _getHit = false;
 
+    public ParticleSystem AttackParticle;
+
     Dictionary<string, GameObject> _projecTiles = new Dictionary<string, GameObject>();
     Dictionary<string, ParticleSystem> _muzzles = new Dictionary<string, ParticleSystem>();
 
@@ -27,6 +29,17 @@ public class Bullet : MonoBehaviour
         {
             _muzzles.Add(muzzles.GetChild(i).name,muzzles.GetChild(i).GetComponent<ParticleSystem>());
         }
+    }
+    public void AttackInit(Transform target, double dmg)
+    {
+        _target = target;
+        if(_target != null)
+        {
+            _target.GetComponent<Character>().GetDamage(dmg);
+        }
+        _getHit = true;
+        AttackParticle.Play();
+        StartCoroutine(ReturnObject(AttackParticle.duration));
     }
     public void Init(Transform target, double dmg, string characterName)
     {
@@ -55,7 +68,7 @@ public class Bullet : MonoBehaviour
             if(_target != null)
             {
                 _getHit = true;
-                _target.GetComponent<Monster>().GetDamage(10);
+                _target.GetComponent<Character>().GetDamage(10);
                 _projecTiles[_characterName].gameObject.SetActive(false);
                 _muzzles[_characterName].Play();
 
@@ -67,6 +80,6 @@ public class Bullet : MonoBehaviour
     IEnumerator ReturnObject(float timer)
     {
         yield return new WaitForSeconds(timer);
-        Base_Mng.Pool.m_pool_Dictionary["Bullet"].Return(this.gameObject);
+        Base_Mng.Pool.m_pool_Dictionary["AttackHelper"].Return(this.gameObject);
     }
 }

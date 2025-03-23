@@ -71,7 +71,7 @@ public class Pool_Mng
     // 풀장에 들어갈 사람을 생성하고 풀장에 넣기
     private void Add_Queue(string path)
     {
-        var go = Base_Mng.instance.instantiate_path(path);             // Resources에서 오브젝트 생성
+        var go = Base_Mng.instance.instantiate_path("Pool_Obj/" + path);             // Resources에서 오브젝트 생성
         go.transform.parent = m_pool_Dictionary[path].parentTransform; // 생성된 오브젝트의 부모를 해당 오브젝트 풀의 Transform으로 설정
         m_pool_Dictionary[path].Return(go);                            // 생성된 오브젝트를 풀에 반환 (즉, 비활성화 상태로 큐에 추가됨)
     }
