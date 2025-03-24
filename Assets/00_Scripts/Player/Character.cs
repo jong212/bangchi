@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     public bool isDead;
 
     protected float _attackRange = 3.0f; // 공격 범위
-    protected float _targetRange = 6.0f; // 추격 범위
+    protected float _targetRange = 5.0f; // 추격 범위
     protected bool isAttack;
     protected Transform m_Target; // 추격 범위
 

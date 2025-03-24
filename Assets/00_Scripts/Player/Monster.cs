@@ -19,6 +19,7 @@ public class Monster : Character
         ATK = 10;
         HP = 5;
         _attackRange = .5f;
+        _targetRange = Mathf.Infinity;
         StartCoroutine(Spawn_Start());
     }
     private void Update()

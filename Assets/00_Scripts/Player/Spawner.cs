@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < m_Count; i++)
         {
-            pos = Vector3.zero + Random.insideUnitSphere *  5.0f;
+            pos = Vector3.zero + Random.insideUnitSphere * 5.0f;
             pos.y = 0.0f;
 
              while(Vector3.Distance(pos, Vector3.zero) <= 3.0f)
