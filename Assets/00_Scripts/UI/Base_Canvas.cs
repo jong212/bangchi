@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Base_Canvas : MonoBehaviour
 {
@@ -17,9 +18,13 @@ public class Base_Canvas : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    private void Start()
+    {
+        heroBtn.onClick.AddListener(() => GetUI("#Heros", true));
+    }
     public Transform Coin;
-    [SerializeField] Transform _layer;
+    [SerializeField] Transform layer;
+    [SerializeField] Button heroBtn;
 
     private void Update()
     {
@@ -38,11 +43,21 @@ public class Base_Canvas : MonoBehaviour
 
     public Transform HolderLayer(int value)
     {
-        return _layer.GetChild(value);
+        return layer.GetChild(value);
     }
 
 
-    public void GetUI(string temp)
+    public void GetUI(string temp, bool fade = false)
+    {
+
+        if (fade)
+        {
+            MainUI.instance.FadeInOut(false,true, () => GetPopupUI(temp));
+            return;
+        }
+        GetPopupUI(temp);
+    }
+    void GetPopupUI(string temp)
     {
         var go = Instantiate(Resources.Load<UI_Base>("UI/" + temp), transform);
         Utils.UI_Holder.Push(go);

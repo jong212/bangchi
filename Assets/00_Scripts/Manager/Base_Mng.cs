@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-// Base_Mng 는 모든 매니저 스크립트를 관리하기 위해 싱글톤 방식으로 생성
+// Base_Mng 는 모든 매니저 스크립트를 관리하기 위해 싱글톤 방식으로 생성 한다.
 // 전역에서 Base_Mng 접근 후 다른 매니저에 쉽게 접근할 수 있음 Base_Mng.pool 이런식으로
  */
 public class Base_Mng : MonoBehaviour
 {
-    
-    public static Base_Mng instance = null; 
+    private static Pool_Mng     s_Pool   = new Pool_Mng();
+    private static Player_Mng   s_Player = new Player_Mng();
 
-    private static Pool_Mng s_Pool = new Pool_Mng();
-    private static Player_Mng s_Player = new Player_Mng();
-
-    public static Pool_Mng Pool { get { return s_Pool; } } 
-    public static Player_Mng Player { get { return s_Player; } }    
+    public static Base_Mng      instance = null; 
+    public static Pool_Mng      Pool     { get { return s_Pool; } } 
+    public static Player_Mng    Player   { get { return s_Player; } }    
 
     private void Awake()
     {
