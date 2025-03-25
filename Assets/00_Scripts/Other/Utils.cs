@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Utils : MonoBehaviour
 {
+    public static SpriteAtlas atlas = Resources.Load<SpriteAtlas>("Atlas");
+    public static Sprite Get_Atlas(string temp)
+    {
+        return atlas.GetSprite(temp);
+    }
     public static string String_color_Rarity(Rarity rare)
     {
      switch (rare)
