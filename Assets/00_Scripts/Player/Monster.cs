@@ -89,27 +89,34 @@ public class Monster : Character
         if(HP <= 0)
         {
             isDead = true;
-            Spawner.m_Monster.Remove(this);
-            var smokeObj = Base_Mng.Pool.Pooling_Obj("Smoke").Get((value) =>
-            {
-                value.transform.position = new Vector3(transform.position.x,.5f,transform.position.z);
-                Base_Mng.instance.Return_Pool(value.GetComponent<ParticleSystem>().duration, value, "Smoke");
-            });
-
-            Base_Mng.Pool.Pooling_Obj("CoinParent").Get((value) =>
-            {
-                value.GetComponent<CoinParent>().Init(transform.position);
-            });
-
-            for (int i = 0; i < 3; i ++)
-            {
-                Base_Mng.Pool.Pooling_Obj("Item_Obj").Get((value) =>
-                {
-                    value.GetComponent<Item_Obj>().Init(transform.position);
-                });
-            }
-            Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
+            DeadEvent();
+            
         }
+    }
+    public void DeadEvent()
+    {
+        Base_Mng.Stage.Count++;
+        MainUI.instance.MonsterSliderCount();
+        Spawner.m_Monster.Remove(this);
+        var smokeObj = Base_Mng.Pool.Pooling_Obj("Smoke").Get((value) =>
+        {
+            value.transform.position = new Vector3(transform.position.x, .5f, transform.position.z);
+            Base_Mng.instance.Return_Pool(value.GetComponent<ParticleSystem>().duration, value, "Smoke");
+        });
+
+        Base_Mng.Pool.Pooling_Obj("CoinParent").Get((value) =>
+        {
+            value.GetComponent<CoinParent>().Init(transform.position);
+        });
+
+        for (int i = 0; i < 3; i++)
+        {
+            Base_Mng.Pool.Pooling_Obj("Item_Obj").Get((value) =>
+            {
+                value.GetComponent<Item_Obj>().Init(transform.position);
+            });
+        }
+        Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
     }
     private  bool Critical(ref double dmg)
     {

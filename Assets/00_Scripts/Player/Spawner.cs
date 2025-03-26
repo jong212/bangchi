@@ -11,9 +11,29 @@ public class Spawner : MonoBehaviour
     public static List<Monster> m_Monster = new List<Monster>();
     public static List<Player> m_Players = new List<Player>();
 
+    Coroutine coroutine;
     private void Start()
     {
-        StartCoroutine(SpawnCoroutine());
+        Base_Mng.Stage.PlayEvent += OnPlay;
+        Base_Mng.Stage.BossEvent += OnBoss;
+    }
+
+    public void OnPlay()
+    {
+        coroutine = StartCoroutine(SpawnCoroutine());
+    }
+    public void OnBoss()
+    {
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        for (int i = 0; i < m_Monster.Count ; i++)
+        {
+            Base_Mng.Pool.m_pool_Dictionary["Monster"].Return(m_Monster[i].gameObject);
+        }
+        m_Monster.Clear();
     }
     IEnumerator SpawnCoroutine()
     {

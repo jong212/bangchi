@@ -10,6 +10,14 @@ public class MainUI : MonoBehaviour
 {
     public static MainUI instance = null;
 
+    [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI allatkText;
+
+    [SerializeField] private Image fade;
+    [SerializeField] private float fadeDutration;
+
+    [SerializeField] Slider monsterSlider;
+    [SerializeField] TextMeshProUGUI monsterValueText;
 
     private void Awake()
     {
@@ -21,6 +29,26 @@ public class MainUI : MonoBehaviour
     private void Start()
     {
         TextCheck();
+    }
+    public void RegisterStageEvents()
+    {
+        Base_Mng.Stage.ReadyEvent += () => FadeInOut(true);
+    }
+
+    public void MonsterSliderCount()
+    {
+        float value = (float)Base_Mng.Stage.Count / (float)Base_Mng.Stage.MaxCount;
+
+        if(value >= 1.0f)
+        {
+            value = 1.0f;
+            if(Base_Mng.Stage.State != Stage_State.Boss)
+                Base_Mng.Stage.State_Change(Stage_State.Boss);
+            
+        }
+
+        monsterSlider.value = value;
+        monsterValueText.text = string.Format("{0:0.0}", value * 100) + "%";
     }
 
     /// <summary>
@@ -65,11 +93,7 @@ public class MainUI : MonoBehaviour
         if(action != null) action?.Invoke();
         fade.raycastTarget = false;
     }
-    [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] TextMeshProUGUI allatkText;
 
-    [SerializeField] private Image fade;
-    [SerializeField] private float fadeDutration;
     public void TextCheck()
     {
         levelText.text = "LV." + (Base_Mng.Player.Level + 1).ToString();

@@ -60,7 +60,6 @@ public class Player_Mng
     public double Next_Atk()
     {
         float a = float.Parse(Csv_Importer.Exp[Level]["Get_EXP"].ToString()) * (Level + 1) / 5;
-        Debug.Log(a);
         return a;
     }
 
